@@ -13,7 +13,7 @@ Impex Snippets
 
 - **link:** "Add CMSLinkComponent"
 
-- **navEntry:** "Add CMSLinkComponent"
+- **navEntry:** "Add CMSNavigationEntry"
 
 - **navNode:** "Add CMSNavigationNode"
 

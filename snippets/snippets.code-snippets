@@ -22,13 +22,13 @@
         ],
         "description": "Add a CMSLinkComponent"
     },
-    "Add a CMSLinkComponent": {
+    "Add a CMSNavigationEntry": {
         "prefix": "navEntry",
         "body": [
             "INSERT_UPDATE CMSNavigationEntry ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; item(CMSLinkComponent.uid, CMSLinkComponent.\\$contentCV) ;",
             "                                 ;                         ; $1                 ; $2     ; $3                                                        ;",
         ],
-        "description": "Add a CMSLinkComponent"
+        "description": "Add a CMSNavigationEntry"
     },
     "Add a CMSNavigationNode": {
         "prefix": "navNode",
