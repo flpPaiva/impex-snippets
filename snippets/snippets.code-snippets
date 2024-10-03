@@ -1,0 +1,210 @@
+{
+    "Add Header": {
+        "prefix": "header",
+        "body": [
+            "\\$catalogVersion = Online",
+            "\\$contentCatalog = $1",
+            "\\$productCatalog = $2",
+            "\\$resourceFolder = $3",
+            "\\$contentCV      = catalogVersion(CatalogVersion.catalog(Catalog.id[default=\\$contentCatalog]), CatalogVersion.version[default=\\$catalogVersion])[default=\\$contentCatalog:\\$catalogVersion]",
+            "\\$productCV      = catalogVersion(catalog(id[default=\\$productCatalog]),version[default=\\$catalogVersion])[unique=true,default=\\$productCatalog:\\$catalogVersion]",
+            "\\$media          = @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]",
+            "\\$siteResource   = jar:de.hybris.platform.spartacussampledata.constants.SpartacussampledataConstants&/spartacussampledata/import/contentCatalogs/\\$resourceFolder",
+            "\\$lang           = en",
+        ],
+        "description": "Add a Header with Variables"
+    },
+    "add a CMSLinkComponent": {
+        "prefix": "link",
+        "body": [
+            "INSERT_UPDATE CMSLinkComponent   ; \\$contentCV[unique=true]  ; uid[unique=true] ; name ; linkName[lang=\\$lang] ; url ; target(code)[default='sameWindow'] ; external ;",
+            "                                 ;                          ; $1                 ; $2     ; $3                     ; /   ;                                    ; true     ;",
+        ],
+        "description": "Add a CMSLinkComponent"
+    },
+    "Add a CMSLinkComponent": {
+        "prefix": "navEntry",
+        "body": [
+            "INSERT_UPDATE CMSNavigationEntry ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; item(CMSLinkComponent.uid, CMSLinkComponent.\\$contentCV) ;",
+            "                                 ;                         ; $1                 ; $2     ; $3                                                        ;",
+        ],
+        "description": "Add a CMSLinkComponent"
+    },
+    "Add a CMSNavigationNode": {
+        "prefix": "navNode",
+        "body": [
+            "INSERT_UPDATE CMSNavigationNode  ; \\$contentCV[unique=true]  ; uid[unique=true] ; name ; entries(uid, \\$contentCV) ;",
+            "                                 ;                          ; $1                 ; $2     ; $3                         ;",
+        ],
+        "description": "Add a CMSNavigationNode"
+    },
+    "Add a Media": {
+        "prefix": "media",
+        "body": [
+            "INSERT_UPDATE Media ; \\$contentCV[unique=true] ; code [unique=true] ; realFileName ; mediaFormat(qualifier) ; \\$media                ; altText  ; mime[default='image/png']  ; folder(qualifier)[default='images'] ;",
+            "                    ;                         ; $1                   ; $2             ; $3widescreen             ; \\$siteResource/images/$4 ;          ;                            ;                                     ;"
+        ],
+        "description": "Add a Media"
+    },
+    "Add a MediaContainer": {
+        "prefix": "container",
+        "body": [
+            "INSERT_UPDATE MediaContainer ; \\$contentCV[unique=true] ; qualifier [unique=true] ; name ; medias(code, \\$contentCV) ;",
+            "                             ;                         ; $1                        ; $2     ; $3                         ;",
+        ],
+        "description": "Add a MediaContainer"
+    },
+    "Add a CMSParagraphComponent": {
+        "prefix": "paragraph",
+        "body": [
+            "INSERT_UPDATE CMSParagraphComponent ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; content[lang=\\$lang] ;",
+            "                                    ;                         ; $1                 ; $2     ; $3                    ;"
+        ],
+        "description": "Add a CMSParagraphComponent"
+    },
+    "Add a CMSFlexComponent": {
+        "prefix": "flex",
+        "body": [
+            "INSERT_UPDATE CMSFlexComponent ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; flexType ;",
+            "                               ;                         ; $1                 ; $2     ; $3         ;"
+        ],
+        "description": "Add a CMSFlexComponent"
+    },
+    "Add a ProductCarouselComponent": {
+        "prefix": "carousel",
+        "body": [
+            "INSERT_UPDATE ProductCarouselComponent ; \\$contentCV[unique=true] ; uid [unique=true] ; name ; title [lang=\\$lang] ; products(code, \\$productCV) ; ",
+            "                                       ;                         ; $1                  ; $2     ; $3                   ; $4                           ;"
+        ],
+        "description": "Add a ProductCarouselComponent"
+    },
+    "Add a SimpleResponsiveBannerComponent": {
+        "prefix": "banner",
+        "body": [
+            "INSERT_UPDATE SimpleResponsiveBannerComponent ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; media(qualifier, \\$contentCV)[lang=\\$lang] ;",
+            "                                              ;                         ; $1                 ; $2     ; $3                                         ;"
+        ],
+        "description": "Add a SimpleResponsiveBannerComponent"
+    },
+    "Add a ResponsiveCarouselComponent": {
+        "prefix": "carousel",
+        "body": [
+            "INSERT_UPDATE ResponsiveCarouselComponent ; \\$contentCV[unique=true] ; uid[unique=true] ; banners(uid, \\$contentCV) ;",
+            "                                          ;                         ; $1                 ; $2                         ;"
+        ],
+        "description": "Add a ResponsiveCarouselComponent"
+    },
+    "Add a ContentSlot": {
+        "prefix": "slot",
+        "body": [
+            "INSERT_UPDATE ContentSlot ; \\$contentCV[unique=true] ; uid [unique=true] ; name ; cmsComponents(uid, \\$contentCV) ; ",
+            "                          ;                         ; $1                  ; $2     ; $3                               ;"
+        ],
+        "description": "Add a ContentSlot"
+    },
+    "Add a ContentSlotForPage": {
+        "prefix": "csfp",
+        "body": [
+            "INSERT_UPDATE ContentSlotForPage ; \\$contentCV[unique=true] ; uid[unique=true] ; position[unique=true] ; page(uid,\\$contentCV)[unique=true] ; contentSlot(uid, \\$contentCV) ;",
+            "                                 ;                         ; $1                 ; $2                      ; $3                                  ; $4                             ;"
+        ],
+        "description": "Add a ContentSlotForPage"
+    },
+    "Add a ContentSlotForTemplate": {
+        "prefix": "csft",
+        "body": [
+            "INSERT_UPDATE ContentSlotForTemplate ; \\$contentCV[unique=true] ; uid[unique=true] ; contentSlot(uid, \\$contentCV) ; position ; pageTemplate(uid, \\$contentCV) ;",
+            "                                     ;                         ; $1                 ; $2                             ; $3         ; $4                              ;"
+        ],
+        "description": "Add a ContentSlotForTemplate"
+    },
+    "Add a ContentSlotName": {
+        "prefix": "slotName",
+        "body": [
+            "INSERT_UPDATE ContentSlotName ; name[unique=true] ; template(uid, \\$contentCV)[unique=true] ; validComponentTypes(code) ; compTypeGroup(code) ;",
+            "                              ; $1                  ; $2                                       ; $3                          ; $4wide                ;"
+        ],
+        "description": "Add a ContentSlotName"
+    },
+    "Add a ContentPage": {
+        "prefix": "page",
+        "body": [
+            "INSERT_UPDATE ContentPage ; \\$contentCV[unique=true] ; uid[unique=true] ; name ; masterTemplate(uid, \\$contentCV) ; label ; title[lang=\\$lang] ; defaultPage[default='true'] ; approvalStatus(code)[default='approved'] ; homepage[default='false'] ;",
+            "                          ;                         ; $1                 ; $2     ; $3                                ; /$4     ; $5                  ;                             ;                                          ;                           ;"
+        ],
+        "description": "Add a ContentPage"
+    },
+    "Add a FooterNavigationComponent": {
+        "prefix": "footer",
+        "body": [
+            "INSERT_UPDATE FooterNavigationComponent ; \\$contentCV[unique=true] ; uid[unique=true] ; notice[lang=\\$lang] ;",
+            "                                        ;                         ; $1                 ; $2                   ;",
+        ],
+        "description": "Add a FooterNavigationComponent"
+    },
+    "Add a Basic Product": {
+        "prefix": "product",
+        "body": [
+            "# Add a Basic Product",
+            "",
+            "\\$productCode   = $1",
+            "\\$name          = $2",
+            "\\$summary       = $3",
+            "\\$description   = $5",
+            "",
+            "",
+            "",
+            "INSERT_UPDATE Media ; \\$contentCV[unique=true]   ; code [unique=true]             ; realFileName              ; mediaFormat(qualifier) ; \\$media                                                      ; altText ; mime[default='image/png'] ; folder(qualifier)[default='images'] ;",
+            "                    ;                           ; \\$productCode-media-1-30-30     ; \\$productCode-01-30x30     ; 30Wx30H                ; \\$siteResource/images/products/\\$productCode-01-30x30.png     ;         ;                           ;                                     ;",
+            "                    ;                           ; \\$productCode-media-1-65-65     ; \\$productCode-01-65x65     ; 65Wx65H                ; \\$siteResource/images/products/\\$productCode-01-65x65.png     ;         ;                           ;                                     ;",
+            "                    ;                           ; \\$productCode-media-1-96-96     ; \\$productCode-01-96x96     ; 96Wx96H                ; \\$siteResource/images/products/\\$productCode-01-96x96.png     ;         ;                           ;                                     ;",
+            "                    ;                           ; \\$productCode-media-1-300-300   ; \\$productCode-01-300x300   ; 300Wx300H              ; \\$siteResource/images/products/\\$productCode-01-300x300.png   ;         ;                           ;                                     ;",
+            "                    ;                           ; \\$productCode-media-1-515-515   ; \\$productCode-01-515x515   ; 515Wx515H              ; \\$siteResource/images/products/\\$productCode-01-515x515.png   ;         ;                           ;                                     ;",
+            "                    ;                           ; \\$productCode-media-1-1200-1200 ; \\$productCode-01-1200x1200 ; 1200Wx1200H            ; \\$siteResource/images/products/\\$productCode-01-1200x1200.png ;         ;                           ;                                     ;",
+            "",
+            "INSERT_UPDATE MediaContainer ; \\$contentCV[unique=true]   ; qualifier [unique=true]       ; medias(code, \\$contentCV)                                                                                                                                                       ;",
+            "                             ;                           ; \\$productCode-1-mediaContainer ; \\$productCode-media-1-1200-1200, \\$productCode-media-1-515-515, \\$productCode-media-1-300-300, \\$productCode-media-1-96-96, \\$productCode-media-1-65-65, \\$productCode-media-1-30-30 ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; picture(code, \\$contentCV)    ; thumbnail(code, \\$contentCV) ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-media-1-300-300 ; \\$productCode-media-1-96-96  ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; detail(code, \\$contentCV)       ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-media-1-1200-1200 ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; normal(code, \\$contentCV)     ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-media-1-300-300 ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; others(code, \\$contentCV)                                                            ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-media-1-515-515, \\$productCode-media-1-65-65, \\$productCode-media-1-30-30;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; thumbnails(code, \\$contentCV) ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-media-1-96-96   ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; galleryImages(qualifier, \\$contentCV) ;",
+            "                      ;            ; \\$productCode      ; \\$productCode-1-mediaContainer        ;",
+            "",
+            "## Summary",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; summary[lang=\\$lang] ; ",
+            "                      ;            ; \\$productCode      ; \\$summary            ;",
+            "",
+            "INSERT_UPDATE Product ; \\$productCV ; code[unique=true] ; description[lang=\\$lang] ; ",
+            "                      ;            ; \\$productCode      ; \\$description            ;"
+        ],
+        "description": "Add a Basic Product"
+    },
+    "Add a Theme": {
+        "prefix": "theme",
+        "body": [
+            "## Adding Theme",
+            "INSERT_UPDATE SiteTheme ; code[unique=true] ; name[lang=\\$lang] ;",
+            "                        ; $1                  ; $2                 ;",
+            "",
+            "",
+            "## Set Theme to cms-site",
+            "INSERT_UPDATE CMSSite ; uid[unique=true] ; theme(code) ;",
+            "                      ; $3                 ; $4            ;"
+        ],
+        "description": "Add a Theme"
+    }
+}

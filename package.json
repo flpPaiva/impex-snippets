@@ -1,0 +1,23 @@
+{
+  "name": "impex-snippets",
+  "displayName": "impex-snippets",
+  "description": "",
+  "version": "0.0.1",
+  "repository": "https://github.com/flpPaiva/impex-snippets",
+  "publisher": "fPaiva",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "impex",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  }
+}
