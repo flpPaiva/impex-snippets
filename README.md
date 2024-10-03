@@ -9,40 +9,40 @@ Impex Snippets
 ## Features
 
   
-- **header:** "Add Header with Variables"
-
-- **link:** "Add CMSLinkComponent"
-
-- **navEntry:** "Add CMSNavigationEntry"
-
-- **navNode:** "Add CMSNavigationNode"
-
-- **media:** "Add Media"
-
-- **container:** "Add a MediaContainer"
-
-- **paragraph:** "Add a CMSParagraphComponent"
-
-- **flex:** "Add a CMSFlexComponent"
+- **banner:** "Add a SimpleResponsiveBannerComponent"
 
 - **carousel:** "Add a ProductCarouselComponent"
 
-- **banner:** "Add a SimpleResponsiveBannerComponent"
-
 - **carousel:** "Add a ResponsiveCarouselComponent"
 
-- **slot:** "Add a ContentSlot"
+- **container:** "Add a MediaContainer"
 
 - **csfp:** "Add a ContentSlotForPage"
 
 - **csft:** "Add a ContentSlotForTemplate"
 
-- **slotName:** "Add a ContentSlotName"
-
-- **page:** "Add a ContentPage"
+- **flex:** "Add a CMSFlexComponent"
 
 - **footer:** "Add a FooterNavigationComponent"
 
+- **header:** "Add Header with Variables"
+
+- **link:** "Add CMSLinkComponent"
+
+- **media:** "Add Media"
+
+- **navEntry:** "Add CMSNavigationEntry"
+
+- **navNode:** "Add CMSNavigationNode"
+
+- **page:** "Add a ContentPage"
+
+- **paragraph:** "Add a CMSParagraphComponent"
+
 - **product:** "Add a Basic Product"
+
+- **slot:** "Add a ContentSlot"
+
+- **slotName:** "Add a ContentSlotName"
 
 - **theme:** "Add a Theme"

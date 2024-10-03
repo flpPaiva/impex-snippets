@@ -12,6 +12,9 @@
   "categories": [
     "Snippets"
   ],
+  "scripts": {
+    "build": "vsce package"
+  },
   "contributes": {
     "snippets": [
       {
